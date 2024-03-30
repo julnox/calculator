@@ -3,49 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Calculator</title>
   </head>
   <body>
-    <main>
-      <div class="history">
-
-      </div>
+    <main class="container">
       <div class="display">
-        <p>0</p>
+        <p id="display-last"></p>
+        <p id="display-current">0</p>
       </div>
       <div class="calculator">
-        <div class="top-row">
+        <div class="calc-row-1">
           <button id="btn_clear">C</button>
+          <button id="btn_signal">+/-</button>
+          <button value="^" class="operator">^</button>
+          <button value="-" class="operator">-</button>
           <button id="btn_backspace">⌫</button>
         </div>
-        <div class="side-column">
-          <button value="-" class="element"> - </button>
-          <button value="+" class="element"> + </button>
-          <button value="/" class="element"> / </button>
-          <button value="*" class="element"> * </button>
-          <button value="^" class="element"> ^ </button>
+        <div class="calc-row-2">
+          <button value="7" class="operand">7</button>
+          <button value="8" class="operand">8</button>
+          <button value="9" class="operand">9</button>
+          <button value="+" class="operator">+</button>
         </div>
-        <div class="digits">
-          <div class="digits-row-1">
-            <button value="7" class="element">7</button>
-            <button value="8" class="element">8</button>
-            <button value="9" class="element">9</button>
-          </div>
-          <div class="digits-row-2">
-            <button value="4" class="element">4</button>
-            <button value="5" class="element">5</button>
-            <button value="6" class="element">6</button>
-          </div>
-          <div class="digits-row-3">
-            <button value="1" class="element">1</button>
-            <button value="2" class="element">2</button>
-            <button value="3" class="element">3</button>
-          </div>
-          <div class="digits-row-4">
-            <button value="0" class="element">0</button>
-            <button value="." class="element">.</button>
-            <button value="equal" id="btn_equal">=</button>
-          </div>
+        <div class="calc-row-3">
+          <button value="4" class="operand">4</button>
+          <button value="5" class="operand">5</button>
+          <button value="6" class="operand">6</button>
+          <button value="/" class="operator">/</button>
+        </div>
+        <div class="calc-row-4">
+          <button value="1" class="operand">1</button>
+          <button value="2" class="operand">2</button>
+          <button value="3" class="operand">3</button>
+          <button value="*" class="operator">x</button>
+        </div>
+        <div class="calc-row-5">
+          <button value="0" class="operand">0</button>
+          <button value="." class="operand">.</button>
+          <button value="equal" id="btn_equal">=</button>
         </div>
       </div>
     </main>
