@@ -4,6 +4,7 @@ const display = document.querySelectorAll(".display p");
 const btnBackspace = document.querySelector("#btn_backspace");
 const btnEqual = document.querySelector("#btn_equal");
 const btnClear = document.querySelector("#btn_clear");
+const btnSignal = document.querySelector("#btn_signal");
 const btnOperators = document.querySelectorAll(".operator");
 const btnOperands = document.querySelectorAll(".operand");
 
@@ -96,20 +97,31 @@ btnBackspace.addEventListener("click", () => {
   else display[1].textContent = str.slice(0, -1);
 });
 
+btnSignal.addEventListener("click", () => {
+  const arr = display[1].textContent.trim().split(" ");
+  const number = parseFloat(arr.slice(-1));
+  if (!isNaN(number) && number !== 0) {
+    const inverted = number * -1;
+    display[1].textContent = (
+      arr.slice(0, -1).join(" ") + ` ${inverted}`
+    ).trimStart();
+  }
+});
+
 btnClear.addEventListener("click", clear);
 
 btnEqual.addEventListener("click", () => {
   if (stack.length === 2) {
     let operand = display[1].textContent;
     operand = operand.slice(operand.indexOf(stack[1]) + 1).trim();
-    if(operand === "0"){
+    if (operand === "0") {
       clear();
       alert("Why? 😭");
       return;
     }
     stack.push(operand);
     const result = `${equalHandler()}`;
-    updateLastDisplay(stack.join(" "), result);
+    updateLastDisplay(stack.join(" ") + " =", result);
     stack = [result];
   }
 });
