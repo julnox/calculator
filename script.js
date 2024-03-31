@@ -37,10 +37,10 @@ const keysTarget = {
   8: btnOperands[1],
   9: btnOperands[2],
   ".": btnDecimal,
-  "*": btnOperators[4],
-  "+": btnOperators[2],
-  "-": btnOperators[1],
-  "/": btnOperators[3],
+  "*": btnOperators[2],
+  "+": btnOperators[4],
+  "-": btnOperators[3],
+  "/": btnOperators[1],
 };
 
 function clearHandler() {
