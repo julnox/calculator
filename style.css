@@ -1,0 +1,96 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  color: white;
+  border: black solid 2px;
+  border-radius: 0.5rem;
+  background-color: #464343;
+  font-size: 1.5rem;
+}
+button:hover{
+  outline: black solid 1px;
+}
+
+button:focus{
+  outline: red solid 1px;
+}
+.grid-col-span-4 {
+  grid-column: span 4;
+}
+
+.grid-col-span-2 {
+  grid-column: span 2;
+}
+
+.grid-row-span-2 {
+  grid-row: span 2;
+}
+
+.background-erase {
+  color: black;
+  background-color: #ff4d4d;
+}
+
+#btn_signal, .operator{
+  color:black;
+  background-color: #FFDA57;
+}
+#btn_equal{
+  color:black;
+  background-color: #64FF6A;
+}
+#display-last{
+
+}
+
+.display > p{
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.display{
+  background-color: #e77b73;
+  border: black solid 2px;
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow-x: clip;
+  text-align: end;
+  min-height: 100px;
+}
+
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.calculator {
+  background-color: #ffefc7;
+  border: black solid 2px;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: grid;
+  min-height: 600px;
+  gap: 0.2rem;
+  grid-template-columns: repeat(4, 5rem);
+  /* grid-template:
+      "display-last display-last display-last display-last" 100px
+      "display-curr display-curr display-curr display-curr" 100px
+      "clear delete signal power" 100px
+      "seven eight nine plus" 100px
+      "four five six division" 100px
+      "one two three mult" 100px
+      "zero decimal equal equal" 100px; */
+}
