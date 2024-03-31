@@ -1,6 +1,6 @@
 "use strict";
 
-const display = document.querySelectorAll(".display p");
+const display = document.querySelectorAll(".display > p");
 const btnBackspace = document.querySelector("#btn_backspace");
 const btnEqual = document.querySelector("#btn_equal");
 const btnClear = document.querySelector("#btn_clear");
@@ -15,7 +15,7 @@ let operand = "";
 
 const operations = {
   "^": (a, b) => a ** b,
-  "*": (a, b) => a * b,
+  "x": (a, b) => a * b,
   "/": (a, b) => a / b,
   "+": (a, b) => a + b,
   "-": (a, b) => a - b,
@@ -45,6 +45,7 @@ const keysTarget = {
 
 function clearHandler() {
   operationStack = [];
+  operand = "";
   display[0].textContent = "";
   display[1].textContent = "0";
 }
@@ -76,12 +77,12 @@ function operate(a, op, b) {
 
 function equalHandler() {
   if (operationStack.length === 2) {
-    if (operand === "0") {
+    if (operand === "0" && operationStack[1] === "/") {
       clearHandler();
       alert("Why? 😭");
       return;
     }
-    if(operand !== "") operationStack.push(operand);
+    if (operand !== "") operationStack.push(operand);
     let result;
     const b =
       operationStack.length === 3 ? operationStack.pop() : operationStack[0];
@@ -94,10 +95,10 @@ function equalHandler() {
       alert(error);
       return -1;
     }
-    if(operand !== "") updateLastDisplay(display[1].textContent + "=", result);
+    if (operand !== "") updateLastDisplay(display[1].textContent + "=", result);
     else updateLastDisplay(display[1].textContent + b + "=", result);
     operand = `${result}`;
-    
+
     return 1;
   }
   return 0;
@@ -115,7 +116,7 @@ function checkValidInput() {
 function signalHandler() {
   if (!checkValidInput()) return;
 
-  const str = display[1].textContent;
+  const str = display[1].textContent.replace(/[\(\)]/g,"");
   const idx = str.indexOf(operationStack[1]);
   let inverted = str.slice(idx + 1);
   if (inverted === "0") return;
@@ -126,7 +127,6 @@ function signalHandler() {
 }
 
 function operatorHandler() {
-  //if (!checkValidInput()) return;
   const value = this.value;
   switch (operationStack.length) {
     case 0:
@@ -134,14 +134,14 @@ function operatorHandler() {
       operand = "";
     case 1:
       operationStack.push(value);
-      updateCurrDisplay(value);
+      updateCurrDisplay(this.textContent);
       break;
     case 2:
       if (equalHandler() === 1) {
         operationStack.push(operand);
         operand = "";
         operationStack.push(value);
-        updateCurrDisplay(value);
+        updateCurrDisplay(this.textContent);
       }
       break;
     default:
@@ -149,10 +149,8 @@ function operatorHandler() {
   }
 }
 
-
 function operandsHandler() {
   const value = this.value;
-  if(operand.length >= 15) return;
   if (operand.startsWith("0")) {
     backspaceHandler();
     operand = value;
